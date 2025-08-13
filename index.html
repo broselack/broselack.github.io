@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-Guk Cho: Research Hub</title>
+    <style>
+        /* 이 부분은 웹사이트의 디자인을 담당하는 CSS 코드입니다. */
+        :root {
+            --primary-color: #005A9C; /* 더 깊고 전문적인 파란색 */
+            --secondary-color: #007acc; 
+            --dark-color: #2c3e50; 
+            --light-color: #f8f9fa; /* 부드러운 회색 배경 */
+            --white-color: #fff;
+            --text-color: #333;
+            --border-color: #dee2e6;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--text-color);
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* 네비게이션 바 */
+        #main-nav {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        #main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #main-nav .logo {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--white-color);
+            text-decoration: none;
+        }
+        #main-nav ul {
+            padding: 0; margin: 0; list-style: none; display: flex;
+        }
+        #main-nav ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+        #main-nav ul li a:hover, #main-nav ul li a.active {
+            background-color: var(--primary-color);
+        }
+
+        /* 헤더 */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white-color);
+            padding: 100px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3.8em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 1.4em;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        /* 공통 섹션 스타일 */
+        .content-section {
+            padding: 60px 20px;
+            background: var(--white-color);
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .content-section h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        /* 팀 멤버 프로필 */
+        .member-profile {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .member-profile:last-of-type {
+            border-bottom: none;
+        }
+        .member-profile img {
+            width: 220px;
+            height: 220px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .member-profile-info { flex: 1; }
+        .member-profile-info h3 {
+            margin-top: 0;
+            font-size: 2em;
+            color: var(--dark-color);
+        }
+        .member-profile-info .title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: -15px;
+            display: block;
+            font-size: 1.1em;
+        }
+        .member-profile-info p {
+            font-size: 1.05em;
+        }
+        
+        .section-subtitle {
+            font-size: 2em;
+            font-weight: 500;
+            color: var(--dark-color);
+            margin: 60px 0 30px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        /* Alumni List */
+        .alumni-list {
+            list-style: none;
+            padding: 0;
+            column-count: 2;
+        }
+        .alumni-list li {
+            margin-bottom: 10px;
+        }
+
+        /* Publications 리스트 */
+        .publications-list { list-style: none; padding: 0; }
+        .publications-list li {
+            background: #fdfdfd;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+        .publications-list li:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .pub-title a { font-weight: 600; text-decoration: none; color: var(--dark-color); font-size: 1.1em; }
+        .pub-title a:hover { color: var(--primary-color); text-decoration: underline; }
+        .pub-authors { font-size: 0.95em; color: #555; margin-top: 5px; }
+        .pub-journal { font-style: italic; font-size: 0.95em; margin-top: 5px; }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .photo-gallery .photo-item {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .photo-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .contact-grid .address { font-size: 1.1em; }
+        .contact-grid .map iframe {
+            width: 100%;
+            height: 400px;
+            border:0;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 30px;
+            background: var(--dark-color);
+            color: var(--grey-color);
+        }
+
+        /* 반응형 디자인 */
+        @media(max-width: 768px) {
+            #main-nav .container { flex-direction: column; }
+            #main-nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .member-profile { flex-direction: column; align-items: center; text-align: center; }
+            .contact-grid, .alumni-list { grid-template-columns: 1fr; column-count: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="container">
+            <a href="#" class="logo">Cho' Hub</a>
+            <ul>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#photos">Photos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Min-Guk Cho Research Hub</h1>
+            <p>Exploring Genomic Instability and Innate Immunity in Cancer</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="team" class="content-section">
+            <h2>Our Team</h2>
+            
+            <h3 class="section-subtitle">Principal Investigator</h3>
+            <div class="member-profile">
+                <img src="https://placehold.co/400x400/005A9C/FFF?text=M.C" alt="Dr. Min-Guk Cho">
+                <div class="member-profile-info">
+                    <h3>Min-Guk Cho, Ph.D.</h3>
+                    <span class="title">Principal Investigator</span>
+                    <p><strong>Education:</strong> Ph.D. in Biochemistry (Cancer Biology), Ajou University</p>
+                    <p>I am Min-Guk Cho, a postdoctoral researcher at the Lineberger Comprehensive Cancer Center, University of North Carolina, Chapel Hill, working under Dr. Gaorav P. Gupta. My expertise lies in exploring the connections between DNA damage repair, innate immune signaling, and genomic instability. My work, including a Nature publication on MRE11’s role in the cGAS-STING-ZBP1 pathway, aims to uncover novel therapeutic targets for cancer. Previously, I conducted postdoctoral research at the University of Miami’s Miller School of Medicine, focusing on innate immune pathways. I am passionate about advancing cancer biology and immunology and am working toward establishing "Cho's Lab" to drive innovative research. I welcome collaboration with those dedicated to pushing the boundaries of science.</p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Current Members</h3>
+            <div class="member-profile">
+                <img src="https://placehold.co/400x400/E8117F/FFF?text=N/A" alt="Team Member">
+                <div class="member-profile-info">
+                    <h3>N/A</h3>
+                    <span class="title">Postdoctoral Fellow</span>
+                    <p><strong>Education:</strong> Ph.D. in Genetics, XYZ University</p>
+                    <p>박사 후 연구원 소개글입니다. 현재 진행 중인 프로젝트, 전문 분야, 그리고 연구 관심사에 대해 작성합니다.</p>
+                </div>
+            </div>
+             <div class="member-profile">
+                <img src="https://placehold.co/400x400/34A853/FFF?text=N/A" alt="Team Member">
+                <div class="member-profile-info">
+                    <h3>N/A</h3>
+                    <span class="title">Graduate Student</span>
+                    <p><strong>Education:</strong> B.S. in Biology, LMN College</p>
+                    <p>대학원생 소개글입니다. 연구 주제와 목표, 학문적 관심사에 대해 작성합니다.</p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Alumni</h3>
+            <ul class="alumni-list">
+                <li><strong>Previous Member 1, Ph.D.</strong> - Current Position: Scientist at Company A</li>
+                <li><strong>Previous Member 2, Ph.D.</strong> - Current Position: Assistant Professor at University B</li>
+                <li><strong>Previous Member 3, M.S.</strong> - Current Position: Research Associate at Institute C</li>
+            </ul>
+        </div>
+
+        <div id="research" class="content-section">
+            <h2>Our Research</h2>
+            <p>
+                Our research investigates the dynamic interplay between DNA damage repair, innate immune signaling, and genomic instability to uncover novel therapeutic targets for cancer treatment. A key focus is the role of the Mre11 gene in triple-negative breast cancer, where we discovered that MRE11 regulates innate immune signaling and necroptosis through the cGAS-STING-ZBP1 pathway, contributing to tumor suppression. This finding, published in Nature, highlights how DNA damage responses can drive immune activation, paving the way for innovative cancer therapies.
+            </p>
+            <p>
+                We are currently exploring mechanisms to amplify innate immune responses triggered by DNA damage and genomic instability, with a particular emphasis on the cGAS-STING pathway. Our work aims to identify novel regulatory mechanisms within this pathway and systematically map the detailed activation processes of cGAS induced by DNA damage. Using advanced approaches such as CRISPR-based gene editing, high-throughput sequencing, and immune profiling, we seek to discover new molecular targets to enhance the efficacy of cancer treatments. Our long-term goal is to develop transformative therapeutic strategies by leveraging these insights at the intersection of cancer biology and immunology.
+            </p>
+            <p>
+                <strong>Research Interests:</strong> DNA Damage Repair, Innate Immunity, Genomic Instability, Cancer Biology, Immunology, Cell Cycle Regulation
+            </p>      
+        </div>
+
+        <div id="publications" class="content-section">
+            <h2>Selected Publications</h2>
+            <ul class="publications-list">
+                <li>
+                    <p class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S1044579X2400346X" target="_blank">Corrigendum to “Unveiling cGAS Mechanisms: Insights into DNA Damage and Immune Sensing in Cancer” [DNA Repair 152 (2025) 103868].</a></p>
+                    <p class="pub-authors"><strong>MG Cho</strong>, GP Gupta</p>
+                    <p class="pub-journal">DNA Repair, 103878 (2025)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S156878642400109X" target="_blank">Unveiling cGAS Mechanisms: Insights into DNA Damage and Immune Sensing in Cancer.</a></p>
+                    <p class="pub-authors"><strong>MG Cho</strong>, GP Gupta</p>
+                    <p class="pub-journal">DNA Repair, 103868 (2025)</p>
+                </li>
+                 <li>
+                    <p class="pub-title"><a href="https://www.nature.com/articles/s41586-024-07332-z" target="_blank">MRE11 liberates cGAS from nucleosome sequestration during tumorigenesis.</a></p>
+                    <p class="pub-authors"><strong>MG Cho</strong>, RJ Kumar, CC Lin, JA Boyer, JA Shahir, K Fagan-Solis, ...</p>
+                    <p class="pub-journal">Nature 629 (7995), 585-592 (2024)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S002228362400199X" target="_blank">Mechanisms of immune sensing of DNA damage.</a></p>
+                    <p class="pub-authors">AM Goddard, <strong>MG Cho</strong>, LM Lerdier, GP Gupta</p>
+                    <p class="pub-journal">Journal of Molecular Biology 436 (4), 168424 (2024)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://link.springer.com/article/10.1007/s12015-023-10534-7" target="_blank">TPX2 amplification-driven aberrant mitosis in culture adapted human embryonic stem cells with gain of 20q11. 21.</a></p>
+                    <p class="pub-authors">HC Jeong, YH Go, JG Shin, YJ Kim, <strong>MG Cho</strong>, D Gwon, HS Cheong, H Lee, ...</p>
+                    <p class="pub-journal">Stem Cell Reviews and Reports 19 (5), 1466-1481 (2023)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.nature.com/articles/s41467-020-14404-1" target="_blank">Dual inhibition of DNA-PK and DNA polymerase theta overcomes radiation resistance induced by p53 deficiency.</a></p>
+                    <p class="pub-authors">RJ Kumar, HX Chao, DA Simpson, W Feng, <strong>MG Cho</strong>, VR Roberts, ...</p>
+                    <p class="pub-journal">Nature communications 11 (1), 856 (2020)</p>
+                </li>
+                 <li>
+                    <p class="pub-title"><a href="https://www.expmolmed.org/journal/view.php?doi=10.1038/s12276-020-0421-y" target="_blank">The cGAS/STING/TBK1/IRF3 innate immunity pathway maintains chromosomal stability through regulation of p21 levels.</a></p>
+                    <p class="pub-authors">A Basil, <strong>MG Cho</strong>, EY Kim, D Kwon, SJ Kang, JH Lee</p>
+                    <p class="pub-journal">Experimental & Molecular Medicine 52 (4), 643-657 (2020)</p>
+                </li>
+                 <li>
+                    <p class="pub-title"><a href="https://www.expmolmed.org/journal/view.php?doi=10.1038/s12276-019-0237-z" target="_blank">Inhibition of PP2A activity by H2O2 during mitosis disrupts nuclear envelope reassembly and alters nuclear shape.</a></p>
+                    <p class="pub-authors">JH Ahn, <strong>MG Cho</strong>, S Sohn, JH Lee</p>
+                    <p class="pub-journal">Experimental & Molecular Medicine 51 (5), 1-18 (2019)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.mdpi.com/1422-0067/20/7/1746" target="_blank">MED28 over-expression shortens the cell cycle and induces genomic instability.</a></p>
+                    <p class="pub-authors">JG Cho, JS Choi, JH Lee, <strong>MG Cho</strong>, HS Kim, HD Noh, KH Lim, B Park, ...</p>
+                    <p class="pub-journal">International Journal of Molecular Sciences 20 (7), 1746 (2019)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.expmolmed.org/journal/view.php?doi=10.1038/s12276-018-0133-y" target="_blank">ATP depletion during mitotic arrest induces mitotic slippage and APC/C<sup>Cdh1</sup>-dependent cyclin B1 degradation.</a></p>
+                    <p class="pub-authors">JY Park, JH Ahn, <strong>MG Cho</strong>, JH Lee</p>
+                    <p class="pub-journal">Experimental & Molecular Medicine 50 (4), 1-14 (2018)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S089158491730105X" target="_blank">DNA double-strand breaks and Aurora B mislocalization induced by exposure of early mitotic cells to H2O2 appear to increase chromatin bridges and resultant cytokinesis failure.</a></p>
+                    <p class="pub-authors"><strong>MG Cho</strong>, JH Ahn, HS Choi, JH Lee</p>
+                    <p class="pub-journal">Free Radical Biology and Medicine 108, 129-145 (2017)</p>
+                </li>
+                <li>
+                    <p class="pub-title"><a href="https://www.expmolmed.org/journal/view.php?doi=10.1038/emm.2014.59" target="_blank">A putative pH-dependent nuclear localization signal in the juxtamembrane region of c-Met.</a></p>
+                    <p class="pub-authors">SC Chaudhary, <strong>MG Cho</strong>, TT Nguyen, KS Park, MH Kwon, JH Lee</p>
+                    <p class="pub-journal">Experimental & Molecular Medicine 46 (10), e119-e119 (2014)</p>
+                </li>
+            </ul>
+        </div>
+
+        <div id="photos" class="content-section">
+            <h2>Member's Photos</h2>
+            <div class="photo-gallery">
+                <div class="photo-item"><img src="https://placehold.co/600x400/3498db/ffffff?text=Lab+Outing" alt="Photo 1"></div>
+                <div class="photo-item"><img src="https://placehold.co/600x400/9b59b6/ffffff?text=Conference" alt="Photo 2"></div>
+                <div class="photo-item"><img src="https://placehold.co/600x400/2ecc71/ffffff?text=Meeting" alt="Photo 3"></div>
+            </div>
+        </div>
+
+        <div id="contact" class="content-section">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="address">
+                    <h3>Mailing Address</h3>
+                    <p>Lineberger Comprehensive Cancer Center</p>
+                    <p>University of North Carolina at Chapel Hill</p>
+                    <p>450 West Dr, Chapel Hill, NC 27599</p>
+                    <p><strong>Email:</strong> <a href="mailto:minguk_cho@med.unc.edu">minguk_cho@med.unc.edu</a></p>
+                </div>
+                <div class="map">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3229.215578132954!2d-79.058395684733!3d35.96621098011502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89acc2e6c48f5a6b%3A0x421689391745416b!2sUNC%20Lineberger%20Comprehensive%20Cancer%20Center!5e0!3m2!1sen!2sus!4v1662581602713!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Min-Guk Cho. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
