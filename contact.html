@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Min-Guk Cho: Research Hub</title>
+    <style>
+        /* 모든 페이지에 공통으로 적용되는 스타일 */
+        :root {
+            --primary-color: #005A9C; --secondary-color: #007acc; --dark-color: #2c3e50; 
+            --light-color: #f8f9fa; --white-color: #fff; --text-color: #333; --border-color: #dee2e6;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; line-height: 1.8; margin: 0; padding: 0; background-color: var(--light-color); color: var(--text-color); }
+        .container { width: 90%; max-width: 1100px; margin: auto; overflow: hidden; }
+        #main-nav { background: rgba(44, 62, 80, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #main-nav .container { display: flex; justify-content: space-between; align-items: center; }
+        #main-nav .logo { font-size: 1.6em; font-weight: 600; color: var(--white-color); text-decoration: none; }
+        #main-nav ul { padding: 0; margin: 0; list-style: none; display: flex; }
+        #main-nav ul li a { color: var(--white-color); text-decoration: none; padding: 8px 16px; font-weight: 500; transition: background-color 0.3s, color 0.3s; border-radius: 5px; }
+        #main-nav ul li a:hover, #main-nav ul li a.active { background-color: var(--primary-color); }
+        .content-section { padding: 60px 20px; background: var(--white-color); margin: 30px 0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .content-section h2 { text-align: center; margin-top: 0; margin-bottom: 50px; font-size: 2.5em; font-weight: 600; color: var(--dark-color); position: relative; padding-bottom: 15px; }
+        .content-section h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center; }
+        .contact-grid .address { font-size: 1.1em; }
+        .contact-grid .map iframe { width: 100%; height: 400px; border:0; border-radius: 8px; }
+        footer { text-align: center; padding: 40px; margin-top: 30px; background: var(--dark-color); color: var(--grey-color); }
+        .visitor-counter { margin-top: 20px; }
+        @media(max-width: 768px) {
+            #main-nav .container { flex-direction: column; }
+            #main-nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">Cho' Hub</a>
+            <ul>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="contact" class="content-section">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="address">
+                    <h3>Mailing Address</h3>
+                    <p>Lineberger Comprehensive Cancer Center</p>
+                    <p>University of North Carolina at Chapel Hill</p>
+                    <p>450 West Dr, Chapel Hill, NC 27599</p>
+                    <br>
+                    <h3>Email</h3>
+                    <p><a href="mailto:minguk_cho@med.unc.edu">minguk_cho@med.unc.edu</a></p>
+                    <br>
+                    <h3>Prospective Students</h3>
+                    <p>We are always looking for passionate new students and researchers. Please email Dr. Cho with your CV and a brief statement of research interests.</p>
+                </div>
+                <div class="map">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3229.215578132954!2d-79.058395684733!3d35.96621098011502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89acc2e6c48f5a6b%3A0x421689391745416b!2sUNC%20Lineberger%20Comprehensive%20Cancer%20Center!5e0!3m2!1sen!2sus!4v1662581602713!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Min-Guk Cho. All Rights Reserved.</p>
+        <div class="visitor-counter">
+            <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fbroselack.github.io&count_bg=%23005A9C&title_bg=%232C3E50&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false"/></a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('#main-nav ul li a');
+            const currentPage = 'contact.html';
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

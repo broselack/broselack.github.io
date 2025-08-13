@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Min-Guk Cho: Research Hub</title>
+    <style>
+        /* 이 부분은 웹사이트의 디자인을 담당하는 CSS 코드입니다. */
+        :root {
+            --primary-color: #005A9C; /* 더 깊고 전문적인 파란색 */
+            --secondary-color: #007acc; 
+            --dark-color: #2c3e50; 
+            --light-color: #f8f9fa; /* 부드러운 회색 배경 */
+            --white-color: #fff;
+            --text-color: #333;
+            --border-color: #dee2e6;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--text-color);
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* 네비게이션 바 */
+        #main-nav {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        #main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #main-nav .logo {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--white-color);
+            text-decoration: none;
+        }
+        #main-nav ul {
+            padding: 0; margin: 0; list-style: none; display: flex;
+        }
+        #main-nav ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+        #main-nav ul li a:hover, #main-nav ul li a.active {
+            background-color: var(--primary-color);
+        }
+
+        /* 공통 섹션 스타일 */
+        .content-section {
+            padding: 60px 20px;
+            background: var(--white-color);
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .content-section h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        /* 팀 멤버 프로필 */
+        .member-profile {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .member-profile:last-of-type {
+            border-bottom: none;
+        }
+        .member-profile img {
+            width: 220px;
+            height: 220px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .member-profile-info { flex: 1; }
+        .member-profile-info h3 {
+            margin-top: 0;
+            font-size: 2em;
+            color: var(--dark-color);
+        }
+        .member-profile-info .title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: -15px;
+            display: block;
+            font-size: 1.1em;
+        }
+        .member-profile-info p {
+            font-size: 1.05em;
+        }
+        
+        .section-subtitle {
+            font-size: 2em;
+            font-weight: 500;
+            color: var(--dark-color);
+            margin: 60px 0 30px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        /* Alumni List */
+        .alumni-list {
+            list-style: none;
+            padding: 0;
+            column-count: 2;
+        }
+        .alumni-list li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 30px;
+            background: var(--dark-color);
+            color: var(--grey-color);
+        }
+        .visitor-counter {
+            margin-top: 20px;
+        }
+        
+        /* 반응형 디자인 */
+        @media(max-width: 768px) {
+            #main-nav .container { flex-direction: column; }
+            #main-nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .member-profile { flex-direction: column; align-items: center; text-align: center; }
+            .contact-grid, .alumni-list { grid-template-columns: 1fr; column-count: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">Cho' Hub</a>
+            <ul>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div id="team" class="content-section">
+            <h2>Our Team</h2>
+            
+            <h3 class="section-subtitle">Principal Investigator</h3>
+            <div class="member-profile">
+                <img src="images/profile.jpg" alt="Dr. Min-Guk Cho">
+                <div class="member-profile-info">
+                    <h3>Min-Guk Cho, Ph.D.</h3>
+                    <span class="title">Principal Investigator</span>
+                    <p><strong>Education:</strong> Ph.D. in Biochemistry (Cancer Biology), Ajou University</p>
+                    <p>I am Min-Guk Cho, a postdoctoral researcher at the Lineberger Comprehensive Cancer Center, University of North Carolina, Chapel Hill, working under Dr. Gaorav P. Gupta. My expertise lies in exploring the connections between DNA damage repair, innate immune signaling, and genomic instability. My work, including a Nature publication on MRE11’s role in the cGAS-STING-ZBP1 pathway, aims to uncover novel therapeutic targets for cancer. Previously, I conducted postdoctoral research at the University of Miami’s Miller School of Medicine, focusing on innate immune pathways. I am passionate about advancing cancer biology and immunology and am working toward establishing "Cho's Lab" to drive innovative research. I welcome collaboration with those dedicated to pushing the boundaries of science.</p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Current Members</h3>
+            <div class="member-profile">
+                <img src="https://placehold.co/400x400/E8117F/FFF?text=N/A" alt="Team Member">
+                <div class="member-profile-info">
+                    <h3>N/A</h3>
+                    <span class="title">Postdoctoral Fellow</span>
+                    <p><strong>Education:</strong> Ph.D. in Genetics, XYZ University</p>
+                    <p>박사 후 연구원 소개글입니다. 현재 진행 중인 프로젝트, 전문 분야, 그리고 연구 관심사에 대해 작성합니다.</p>
+                </div>
+            </div>
+             <div class="member-profile">
+                <img src="https://placehold.co/400x400/34A853/FFF?text=N/A" alt="Team Member">
+                <div class="member-profile-info">
+                    <h3>N/A</h3>
+                    <span class="title">Graduate Student</span>
+                    <p><strong>Education:</strong> B.S. in Biology, LMN College</p>
+                    <p>대학원생 소개글입니다. 연구 주제와 목표, 학문적 관심사에 대해 작성합니다.</p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Alumni</h3>
+            <ul class="alumni-list">
+                <li><strong>Previous Member 1, Ph.D.</strong> - Current Position: Scientist at Company A</li>
+                <li><strong>Previous Member 2, Ph.D.</strong> - Current Position: Assistant Professor at University B</li>
+                <li><strong>Previous Member 3, M.S.</strong> - Current Position: Research Associate at Institute C</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Min-Guk Cho. All Rights Reserved.</p>
+        <div class="visitor-counter">
+            <a href="https://hits.seeyoufarm.com">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fbroselack.github.io&count_bg=%23005A9C&title_bg=%232C3E50&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false"/>
+            </a>
+        </div>
+    </footer>
+    
+    <script>
+        // 현재 페이지에 해당하는 네비게이션 링크를 활성화 상태로 만듭니다.
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('#main-nav ul li a');
+            // 현재 파일 이름을 가져옵니다. (예: "team.html")
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
